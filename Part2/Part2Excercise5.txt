@@ -1,0 +1,11 @@
+To add a BoxBug actor to the grid:
+1) Create a new BoxBug object, with the desired value for sideLength as parameter
+
+	BoxBug billyHill = new BoxBug(5); 
+
+2) Add the new BoxBug to the world. Its location can either be random, or specific.
+
+	world.add(willyWolly); 
+
+	 
+	world.add(new Location(1,1), pillDre);
