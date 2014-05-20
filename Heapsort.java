@@ -1,33 +1,44 @@
-//Chenyu Eric Li
-//APCS2 Pd 8
+//JAMES KONG
+//APCS2 PD #08
 //HW 41
-//05/19/14
+//2014-05-20
+/*
+Best Case Scenario: The array is in order. This way, each time a new node is added, it will  be less than the current minimum (assuming that the ALHeap is a minimum one). RunTime: O(n). Memory consumption for both depends on the size of the data.
+Worst Case Scenario: The lowest values in the array are to the right. This means that when adding to the ALHeap, the new values will have to make mulitple swaps to make it to the top. RunTime: O(nlogn).
+ */
+public class HeapSort {
 
-//Runtime: heapsort requires adding, then removing to and from a heap. Adding will have the runtime of O(logn)--adding to the end and swapping up until a smaller parent is found. If the element added is larger than the parent, then runtime is O(1)--just add each element. So, if the data we sort is already sorted, then adding n elements is is O(n). If not, it is O(nlogn) For remove, runtime is O(logn)--find new root by swapping and remove old one. Now, no matter how the original array is arranged (even if it is already sorted), the removal of the first element requires looking through the entire tree to search for minChild. Thus, removing has O(nlogn) run time. Then, adding and removing has a total of O(nlogn) no matter the original array.
-//Memory: All we used is arraylist to store the heap, thus memory space is O(n).
+    //instance vars
+    private ALHeap a; //underlying container is array of Integers
+    private Integer[] b;
 
-public class Heapsort{
-    private ALHeap _heap;
-    public Heapsort(){
-	_heap = new ALHeap();
+    public HeapSort(){
+	a = new ALHeap();
     }
-    public Integer[] sort(Integer[]data){
-	for(int i = 0; i < data.length; i++){
-	    _heap.add(data[i]);
+
+    public Integer[] sort( Integer[] data ){
+	b = new Integer[data.length];
+	int j = 0;
+	for (int i = 0; i < data.length; i++)
+	    a.add(data[i]);
+	while (j  < data.length){
+	    b[j] = a.removeMin();
+	    j++;
 	}
-	Integer[] rtr = new Integer[data.length];
-	for(int i = 0; i < data.length; i++){
-	    rtr[i] = _heap.removeMin();
+	// to return the array's elements
+	for (int i = 0 ; i < b.length; i ++){
+	    System.out.println(b[i]);
 	}
-	for(int i = 0; i < data.length; i++){
-	    System.out.print(rtr[i] + " ");
-	}
-	System.out.println();
-	return rtr;
+	return b;  
     }
-    public static void main(String[]args){
-	Integer[] ints = {5,2,6,3,1};
-	Heapsort sorty = new Heapsort();
-	sorty.sort(ints);
+    
+    
+    public static void main( String[] args ) {
+
+	HeapSort c = new HeapSort();
+	Integer[] d = { 1, 7, 6, 4, 5, 2, 3};
+	c.sort(d);
     }
+    
 }
+	
